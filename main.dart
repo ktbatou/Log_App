@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login_app/register.dart';
 import 'package:login_app/splash.dart';
 
 void main() {
