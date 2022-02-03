@@ -1,3 +1,4 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -7,10 +8,12 @@ class RegisterForm extends StatefulWidget {
 }
 
 class _formState extends State<RegisterForm> {
-  TextEditingController fullName = TextEditingController();
-  TextEditingController Email = TextEditingController();
+  TextEditingController lastName = TextEditingController();
+  TextEditingController firstName = TextEditingController();
+  TextEditingController email = TextEditingController();
   TextEditingController pwd = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  bool _obsecure = true;
 
   @override
   Widget build(BuildContext context) {
@@ -22,21 +25,25 @@ class _formState extends State<RegisterForm> {
         child: Column(
           children: [
             Container(
-              margin: EdgeInsets.only(top: contextHeight * 0.06),
+              padding: EdgeInsets.only(top: contextHeight * 0.05),
               width: contextWidth * 0.75,
-              height: contextHeight * 0.05,
+              //height: contextHeight * 0.05,
               child: TextFormField(
-                controller: fullName,
-                //   style: TextStyle(color: theme.textTheme),
-                //  maxLength: 100,
-                //    maxLengthEnforcement: MaxLengthEnforcement.enforced,
+                controller: firstName,
+                //  maxLines: 1,
                 decoration: const InputDecoration(
+                  contentPadding:
+                      EdgeInsets.symmetric(vertical: 2.0, horizontal: 10.0),
                   fillColor: Color(0xffE5E5E5),
                   filled: true,
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(15)),
                     borderSide:
                         BorderSide(color: Color(0xffE5E5E5), width: 1.0),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(15)),
+                    borderSide: BorderSide(width: 1, color: Colors.grey),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(15)),
@@ -55,21 +62,25 @@ class _formState extends State<RegisterForm> {
               ),
             ),
             Container(
-              margin: EdgeInsets.only(top: contextHeight * 0.03),
+              padding: EdgeInsets.only(top: contextHeight * 0.02),
               width: contextWidth * 0.75,
-              height: contextHeight * 0.05,
+              // height: contextHeight * 0.08,
               child: TextFormField(
-                controller: fullName,
-                //   style: TextStyle(color: theme.textTheme),
-                //   maxLength: 100,
-                //    maxLengthEnforcement: MaxLengthEnforcement.enforced,
+                controller: lastName,
+                //maxLines: 1,
                 decoration: const InputDecoration(
+                  contentPadding:
+                      EdgeInsets.symmetric(vertical: 2.0, horizontal: 10.0),
                   fillColor: Color(0xffE5E5E5),
                   filled: true,
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(15)),
                     borderSide:
                         BorderSide(color: Color(0xffE5E5E5), width: 1.0),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(15)),
+                    borderSide: BorderSide(width: 1, color: Colors.grey),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(15)),
@@ -88,21 +99,23 @@ class _formState extends State<RegisterForm> {
               ),
             ),
             Container(
-              margin: EdgeInsets.only(top: contextHeight * 0.03),
+              padding: EdgeInsets.only(top: contextHeight * 0.02),
               width: contextWidth * 0.75,
-              height: contextHeight * 0.05,
               child: TextFormField(
-                controller: fullName,
-                //   style: TextStyle(color: theme.textTheme),
-                // maxLength: 100,
-                //    maxLengthEnforcement: MaxLengthEnforcement.enforced,
+                controller: email,
                 decoration: const InputDecoration(
+                  contentPadding:
+                      EdgeInsets.symmetric(vertical: 2.0, horizontal: 10.0),
                   fillColor: Color(0xffE5E5E5),
                   filled: true,
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(15)),
                     borderSide:
                         BorderSide(color: Color(0xffE5E5E5), width: 1.0),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(15)),
+                    borderSide: BorderSide(width: 1, color: Colors.grey),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(15)),
@@ -113,37 +126,56 @@ class _formState extends State<RegisterForm> {
                   counterStyle: TextStyle(color: Colors.grey),
                 ),
                 validator: (String? value) {
-                  if (value!.isEmpty) {
+                  bool isValid = EmailValidator.validate(value!);
+                  if (value.isEmpty) {
                     return 'Please enter some text';
+                  } else if (isValid == false) {
+                    return 'Invalid Email';
                   }
                   return null;
                 },
               ),
             ),
             Container(
-              margin: EdgeInsets.only(top: contextHeight * 0.03),
+              padding: EdgeInsets.only(top: contextHeight * 0.02),
               width: contextWidth * 0.75,
-              height: contextHeight * 0.05,
               child: TextFormField(
-                controller: fullName,
-                //   style: TextStyle(color: theme.textTheme),
-                //  maxLength: 100,
-                //    maxLengthEnforcement: MaxLengthEnforcement.enforced,
-                decoration: const InputDecoration(
-                  fillColor: Color(0xffE5E5E5),
+                controller: pwd,
+                obscureText: _obsecure,
+                enableSuggestions: false,
+                autocorrect: false,
+                decoration: InputDecoration(
+                  contentPadding: const EdgeInsets.symmetric(
+                      vertical: 2.0, horizontal: 10.0),
+                  fillColor: const Color(0xffE5E5E5),
                   filled: true,
-                  enabledBorder: OutlineInputBorder(
+                  suffixIcon: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        _obsecure = !_obsecure;
+                      });
+                    },
+                    child: Icon(
+                      _obsecure ? Icons.visibility : Icons.visibility_off,
+                      color: Colors.grey,
+                    ),
+                  ),
+                  enabledBorder: const OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(15)),
                     borderSide:
                         BorderSide(color: Color(0xffE5E5E5), width: 1.0),
                   ),
-                  focusedBorder: OutlineInputBorder(
+                  border: const OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(15)),
+                    borderSide: BorderSide(width: 1, color: Colors.grey),
+                  ),
+                  focusedBorder: const OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(15)),
                     borderSide: BorderSide(width: 1, color: Colors.grey),
                   ),
                   labelText: 'Password',
-                  labelStyle: TextStyle(color: Color(0xffB2B2B2)),
-                  counterStyle: TextStyle(color: Colors.grey),
+                  labelStyle: const TextStyle(color: Color(0xffB2B2B2)),
+                  counterStyle: const TextStyle(color: Colors.grey),
                 ),
                 validator: (String? value) {
                   if (value!.isEmpty) {
@@ -154,7 +186,7 @@ class _formState extends State<RegisterForm> {
               ),
             ),
             Container(
-                margin: EdgeInsets.only(top: contextHeight * 0.06),
+                margin: EdgeInsets.only(top: contextHeight * 0.03),
                 width: contextWidth * 0.75,
                 height: contextHeight * 0.05,
                 decoration: BoxDecoration(
@@ -182,21 +214,16 @@ class _formState extends State<RegisterForm> {
                       style: GoogleFonts.roboto(
                           color: Colors.white, fontSize: 18)),
                   onPressed: () {
-                    /* if (_formKey.currentState!.validate()) {
-                        senEmail(
-                            email: Email.text,
-                            name: fullName.text,
-                            msg: Message.text);
-                        // If the form is valid, display a snackbar. In the real world,
-                        // you'd often call a server or save the information in a database.
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                              backgroundColor: Colors.lightGreen,
-                              content:
-                                  Text('The message was sent successfully')),
-                        );
-                        Navigator.of(context).pushNamed('/');
-                      }*/
+                    if (_formKey.currentState!.validate()) {
+                      // If the form is valid, display a snackbar. In the real world,
+                      // you'd often call a server or save the information in a database.
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                            backgroundColor: Colors.lightGreen,
+                            content: Text('done')),
+                      );
+                      Navigator.of(context).pushNamed('/');
+                    }
                   },
                 ))
           ],
