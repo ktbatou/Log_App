@@ -2,12 +2,12 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class RegisterForm extends StatefulWidget {
+class LoginForm extends StatefulWidget {
   @override
-  _formState createState() => _formState();
+  _LoginFormState createState() => _LoginFormState();
 }
 
-class _formState extends State<RegisterForm> {
+class _LoginFormState extends State<LoginForm> {
   TextEditingController lastName = TextEditingController();
   TextEditingController firstName = TextEditingController();
   TextEditingController email = TextEditingController();
@@ -27,80 +27,6 @@ class _formState extends State<RegisterForm> {
           children: [
             Container(
               padding: EdgeInsets.only(top: contextHeight * 0.05),
-              width: contextWidth * 0.75,
-              //height: contextHeight * 0.05,
-              child: TextFormField(
-                controller: firstName,
-                //  maxLines: 1,
-                decoration: const InputDecoration(
-                  contentPadding:
-                      EdgeInsets.symmetric(vertical: 2.0, horizontal: 10.0),
-                  fillColor: Color(0xffE5E5E5),
-                  filled: true,
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(15)),
-                    borderSide:
-                        BorderSide(color: Color(0xffE5E5E5), width: 1.0),
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(15)),
-                    borderSide: BorderSide(width: 1, color: Colors.grey),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(15)),
-                    borderSide: BorderSide(width: 1, color: Colors.grey),
-                  ),
-                  labelText: 'First Name',
-                  labelStyle: TextStyle(color: Color(0xffB2B2B2)),
-                  counterStyle: TextStyle(color: Colors.grey),
-                ),
-                validator: (String? value) {
-                  if (value!.isEmpty) {
-                    return 'Please enter some text';
-                  }
-                  return null;
-                },
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.only(top: contextHeight * 0.02),
-              width: contextWidth * 0.75,
-              // height: contextHeight * 0.08,
-              child: TextFormField(
-                controller: lastName,
-                //maxLines: 1,
-                decoration: const InputDecoration(
-                  contentPadding:
-                      EdgeInsets.symmetric(vertical: 2.0, horizontal: 10.0),
-                  fillColor: Color(0xffE5E5E5),
-                  filled: true,
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(15)),
-                    borderSide:
-                        BorderSide(color: Color(0xffE5E5E5), width: 1.0),
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(15)),
-                    borderSide: BorderSide(width: 1, color: Colors.grey),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(15)),
-                    borderSide: BorderSide(width: 1, color: Colors.grey),
-                  ),
-                  labelText: 'Last Name',
-                  labelStyle: TextStyle(color: Color(0xffB2B2B2)),
-                  counterStyle: TextStyle(color: Colors.grey),
-                ),
-                validator: (String? value) {
-                  if (value!.isEmpty) {
-                    return 'Please enter some text';
-                  }
-                  return null;
-                },
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.only(top: contextHeight * 0.02),
               width: contextWidth * 0.75,
               child: TextFormField(
                 controller: email,
@@ -211,7 +137,7 @@ class _formState extends State<RegisterForm> {
                           RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(18.0),
                       ))),
-                  child: Text('Sign Up',
+                  child: Text('Sign In',
                       style: GoogleFonts.roboto(
                           color: Colors.white, fontSize: 18)),
                   onPressed: () {

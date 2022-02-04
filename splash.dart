@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:login_app/login.dart';
 import 'package:login_app/register.dart';
 import 'package:login_app/signIn-register.dart';
 
@@ -42,10 +43,10 @@ class _splashState extends State<splash> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           button(msg: "Register", page: Register()),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
-                          button(msg: "Sign In", page: Register()),
+                          button(msg: "Sign In", page: Login()),
                         ],
                       ))
                 ],

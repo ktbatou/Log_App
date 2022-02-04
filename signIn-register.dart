@@ -35,7 +35,7 @@ class _buttonsState extends State<button> {
             onPressed: () {
               Navigator.pushAndRemoveUntil(
                 context,
-                MaterialPageRoute(builder: (context) => Register()),
+                MaterialPageRoute(builder: (context) => widget.page),
                 (Route<dynamic> route) => false,
               );
             },
