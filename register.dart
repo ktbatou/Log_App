@@ -37,20 +37,23 @@ class _RegisterState extends State<Register> {
                 Text("Sign Up With",
                     style: GoogleFonts.poppins(
                         fontSize: 12, color: const Color(0xffB2B2B2))),
-                const SizedBox(
-                  height: 30,
+                SizedBox(
+                  height: contextWidth > contextHeight ? 20 : 30,
                 ),
                 Container(
                   padding: const EdgeInsets.only(left: 10, right: 10),
                   child: SocialMedia(),
                 ),
-                const SizedBox(
-                  height: 30,
+                SizedBox(
+                  height: contextWidth > contextHeight ? 20 : 30,
                 ),
                 SignText(
                   clickText: "Sign In",
                   questText: "Already havr an account",
-                )
+                ),
+                SizedBox(
+                  height: contextWidth > contextHeight ? 20 : 0,
+                ),
               ],
             ),
           )),

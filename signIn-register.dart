@@ -16,8 +16,12 @@ class _buttonsState extends State<button> {
     double contextWidth = MediaQuery.of(context).size.width;
     double contextheight = MediaQuery.of(context).size.height;
     return Container(
-        width: contextWidth * 0.7,
-        height: contextheight * 0.055,
+        width: contextWidth > contextheight
+            ? contextWidth * 0.55
+            : contextWidth * 0.7,
+        height: contextWidth > contextheight
+            ? contextheight * 0.1
+            : contextheight * 0.055,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           border: Border.all(

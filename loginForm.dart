@@ -115,7 +115,9 @@ class _LoginFormState extends State<LoginForm> {
             Container(
                 margin: EdgeInsets.only(top: contextHeight * 0.03),
                 width: contextWidth * 0.75,
-                height: contextHeight * 0.05,
+                height: contextWidth > contextHeight
+                    ? contextHeight * 0.09
+                    : contextHeight * 0.05,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(18),
                     boxShadow: [

@@ -14,6 +14,7 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     double contextHeight = MediaQuery.of(context).size.height;
+    double contextWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
         backgroundColor: Colors.white,
@@ -38,20 +39,23 @@ class _LoginState extends State<Login> {
                 Text("Sign In With",
                     style: GoogleFonts.poppins(
                         fontSize: 12, color: const Color(0xffB2B2B2))),
-                const SizedBox(
-                  height: 30,
+                SizedBox(
+                  height: contextWidth > contextHeight ? 20 : 30,
                 ),
                 Container(
                   padding: const EdgeInsets.only(left: 10, right: 10),
                   child: SocialMedia(),
                 ),
-                const SizedBox(
-                  height: 30,
+                SizedBox(
+                  height: contextWidth > contextHeight ? 20 : 30,
                 ),
                 SignText(
                   clickText: "Sign Up",
                   questText: "You don't have an account?",
-                )
+                ),
+                SizedBox(
+                  height: contextWidth > contextHeight ? 20 : 0,
+                ),
               ],
             ),
           )),

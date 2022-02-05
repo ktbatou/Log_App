@@ -1,6 +1,7 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:login_app/email_auth.dart';
 
 class RegisterForm extends StatefulWidget {
   @override
@@ -189,7 +190,9 @@ class _formState extends State<RegisterForm> {
             Container(
                 margin: EdgeInsets.only(top: contextHeight * 0.03),
                 width: contextWidth * 0.75,
-                height: contextHeight * 0.05,
+                height: contextWidth > contextHeight
+                    ? contextHeight * 0.09
+                    : contextHeight * 0.05,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(18),
                     boxShadow: [
@@ -216,6 +219,7 @@ class _formState extends State<RegisterForm> {
                           color: Colors.white, fontSize: 18)),
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
+                      Registeration(email.text, pwd.text);
                       // If the form is valid, display a snackbar. In the real world,
                       // you'd often call a server or save the information in a database.
                       ScaffoldMessenger.of(context).showSnackBar(

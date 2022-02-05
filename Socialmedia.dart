@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:login_app/google_auth.dart';
 
 class SocialMedia extends StatefulWidget {
   @override
@@ -18,8 +19,12 @@ class _SocialMediaState extends State<SocialMedia> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Container(
-            width: contextWidth * 0.17,
-            height: contextWidth * 0.10,
+            width: contextWidth > contextHeight
+                ? contextWidth * 0.15
+                : contextWidth * 0.17,
+            height: contextWidth > contextHeight
+                ? contextWidth * 0.07
+                : contextWidth * 0.10,
             child: OutlinedButton(
               style: OutlinedButton.styleFrom(
                 shape: RoundedRectangleBorder(
@@ -27,7 +32,9 @@ class _SocialMediaState extends State<SocialMedia> {
                 ),
                 side: const BorderSide(width: 0.9, color: Color(0xffB2B2B2)),
               ),
-              onPressed: () {},
+              onPressed: () {
+                signInWithGoogle();
+              },
               child: Image.asset(
                 'assets/images/google.png',
                 height: 20,
@@ -36,8 +43,12 @@ class _SocialMediaState extends State<SocialMedia> {
             ),
           ),
           Container(
-              width: contextWidth * 0.17,
-              height: contextWidth * 0.10,
+              width: contextWidth > contextHeight
+                  ? contextWidth * 0.15
+                  : contextWidth * 0.17,
+              height: contextWidth > contextHeight
+                  ? contextWidth * 0.07
+                  : contextWidth * 0.10,
               child: OutlinedButton(
                 style: OutlinedButton.styleFrom(
                   shape: RoundedRectangleBorder(
@@ -53,8 +64,12 @@ class _SocialMediaState extends State<SocialMedia> {
                 ),
               )),
           Container(
-            width: contextWidth * 0.17,
-            height: contextWidth * 0.10,
+            width: contextWidth > contextHeight
+                ? contextWidth * 0.15
+                : contextWidth * 0.17,
+            height: contextWidth > contextHeight
+                ? contextWidth * 0.07
+                : contextWidth * 0.10,
             child: OutlinedButton(
               style: OutlinedButton.styleFrom(
                 shape: RoundedRectangleBorder(
