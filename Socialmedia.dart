@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:login_app/apple_auth.dart';
+import 'package:login_app/facebook_auth.dart';
 import 'package:login_app/google_auth.dart';
 
 class SocialMedia extends StatefulWidget {
@@ -56,7 +58,9 @@ class _SocialMediaState extends State<SocialMedia> {
                   ),
                   side: const BorderSide(width: 0.9, color: Color(0xffB2B2B2)),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  signInWithFacebook();
+                },
                 child: Image.asset(
                   'assets/images/fb.png',
                   height: 20,
@@ -77,7 +81,9 @@ class _SocialMediaState extends State<SocialMedia> {
                 ),
                 side: const BorderSide(width: 0.9, color: Color(0xffB2B2B2)),
               ),
-              onPressed: () {},
+              onPressed: () {
+                signInWithApple();
+              },
               child: Image.asset(
                 'assets/images/apple.png',
                 height: 20,
