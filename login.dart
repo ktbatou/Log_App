@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:login_app/loginForm.dart';
+import 'package:login_app/register.dart';
 import 'package:login_app/signText.dart';
 
 import 'Socialmedia.dart';

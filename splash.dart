@@ -31,7 +31,7 @@ class _splashState extends State<splash> {
                 children: [
                   Container(
                       child: Text(
-                    "Welcome",
+                    "Logini",
                     style: GoogleFonts.poppins(
                         fontSize: 42,
                         color: Colors.white,

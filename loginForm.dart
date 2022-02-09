@@ -1,6 +1,8 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:login_app/forgetPwd.dart';
+import 'package:login_app/signIn_auth.dart';
 
 class LoginForm extends StatefulWidget {
   @override
@@ -112,6 +114,22 @@ class _LoginFormState extends State<LoginForm> {
                 },
               ),
             ),
+            SizedBox(
+              height: contextWidth > contextHeight ? 15 : 10,
+            ),
+            InkWell(
+              splashColor: Colors.transparent,
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => PwdForgoten()),
+                  //     (Route<dynamic> route) => false,
+                );
+              },
+              child: Text("Forgot Password ?",
+                  style: GoogleFonts.poppins(
+                      fontSize: 12, color: const Color(0xffB2B2B2))),
+            ),
             Container(
                 margin: EdgeInsets.only(top: contextHeight * 0.03),
                 width: contextWidth * 0.75,
@@ -130,10 +148,10 @@ class _LoginFormState extends State<LoginForm> {
                     ]),
                 child: ElevatedButton(
                   style: ButtonStyle(
-                      shadowColor:
-                          MaterialStateProperty.all<Color>(Color(0xff6D678E)),
+                      shadowColor: MaterialStateProperty.all<Color>(
+                          const Color(0xff6D678E)),
                       backgroundColor: MaterialStateProperty.all<Color>(
-                        Color(0xff6D678E),
+                        const Color(0xff6D678E),
                       ),
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
@@ -144,14 +162,23 @@ class _LoginFormState extends State<LoginForm> {
                           color: Colors.white, fontSize: 18)),
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
+                      LoginAuth(email.text, pwd.text).then((String value) {
+                        if (value == "done") {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                                backgroundColor: Colors.lightGreen,
+                                content: Text('done')),
+                          );
+                          Navigator.of(context).pushNamed('/');
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              backgroundColor: Colors.red,
+                              content: Text(value)));
+                        }
+                      });
                       // If the form is valid, display a snackbar. In the real world,
                       // you'd often call a server or save the information in a database.
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                            backgroundColor: Colors.lightGreen,
-                            content: Text('done')),
-                      );
-                      Navigator.of(context).pushNamed('/');
+
                     }
                   },
                 ))

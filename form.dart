@@ -219,15 +219,23 @@ class _formState extends State<RegisterForm> {
                           color: Colors.white, fontSize: 18)),
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
-                      Registeration(email.text, pwd.text);
+                      Registeration(email.text, pwd.text).then((String value) {
+                        if (value == "done") {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                                backgroundColor: Colors.lightGreen,
+                                content: Text('done')),
+                          );
+                          Navigator.of(context).pushNamed('/');
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              backgroundColor: Colors.red,
+                              content: Text(value)));
+                        }
+                      });
                       // If the form is valid, display a snackbar. In the real world,
                       // you'd often call a server or save the information in a database.
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                            backgroundColor: Colors.lightGreen,
-                            content: Text('done')),
-                      );
-                      Navigator.of(context).pushNamed('/');
+
                     }
                   },
                 ))
