@@ -2,6 +2,7 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:login_app/forgetPwd.dart';
+import 'package:login_app/home.dart';
 import 'package:login_app/signIn_auth.dart';
 
 class LoginForm extends StatefulWidget {
@@ -169,7 +170,14 @@ class _LoginFormState extends State<LoginForm> {
                                 backgroundColor: Colors.lightGreen,
                                 content: Text('done')),
                           );
-                          Navigator.of(context).pushNamed('/');
+                          Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Home(
+                                      userName: "test",
+                                    )),
+                            (Route<dynamic> route) => false,
+                          );
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                               backgroundColor: Colors.red,

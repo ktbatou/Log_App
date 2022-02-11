@@ -3,6 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:login_app/apple_auth.dart';
 import 'package:login_app/facebook_auth.dart';
 import 'package:login_app/google_auth.dart';
+import 'package:login_app/home.dart';
+import 'package:login_app/twitter_auth.dart';
 
 class SocialMedia extends StatefulWidget {
   @override
@@ -35,7 +37,17 @@ class _SocialMediaState extends State<SocialMedia> {
                 side: const BorderSide(width: 0.9, color: Color(0xffB2B2B2)),
               ),
               onPressed: () {
-                signInWithGoogle();
+                signInWithGoogle().then((value) {
+                  if (value != null) {
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              Home(userName: value.displayName.toString())),
+                      (Route<dynamic> route) => false,
+                    );
+                  }
+                });
               },
               child: Image.asset(
                 'assets/images/google.png',
@@ -59,7 +71,18 @@ class _SocialMediaState extends State<SocialMedia> {
                   side: const BorderSide(width: 0.9, color: Color(0xffB2B2B2)),
                 ),
                 onPressed: () {
-                  signInWithFacebook();
+                  signInWithFacebook().then((value) {
+                    if (value.user != null) {
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => Home(
+                                userName: value.user!.displayName.toString())),
+                        (Route<dynamic> route) => false,
+                      );
+                    }
+                  });
+                  ;
                 },
                 child: Image.asset(
                   'assets/images/fb.png',
@@ -82,7 +105,7 @@ class _SocialMediaState extends State<SocialMedia> {
                 side: const BorderSide(width: 0.9, color: Color(0xffB2B2B2)),
               ),
               onPressed: () {
-                signInWithApple();
+                signInWithTwitter();
               },
               child: Image.asset(
                 'assets/images/apple.png',
