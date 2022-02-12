@@ -1,12 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:twitter_login/twitter_login.dart';
 
 Future<UserCredential> signInWithTwitter() async {
   // Create a TwitterLogin instance
   final twitterLogin = TwitterLogin(
-      apiKey: 'b85vPr7mwVymMTu5NNwxsygm2',
-      apiSecretKey: 'jLA4NBddDsxsMWVzkAy0C5mp6HF2M7RQkSXq1Cu0zoILZ9sRdJ',
-      redirectURI: 'https://login-d39d9.firebaseapp.com/__/auth/handler');
+      apiKey: dotenv.env['TWITTER_API_KEY']!,
+      apiSecretKey: dotenv.env['TWITTER_API_SECRET_KEY']!,
+      redirectURI: dotenv.env['TWITTER_CALLBACK_URL']!);
 
   // Trigger the sign-in flow
   final authResult = await twitterLogin.login();
