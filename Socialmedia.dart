@@ -105,7 +105,17 @@ class _SocialMediaState extends State<SocialMedia> {
                 side: const BorderSide(width: 0.9, color: Color(0xffB2B2B2)),
               ),
               onPressed: () {
-                signInWithTwitter();
+                signInWithTwitter().then((value) {
+                  if (value != null) {
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => Home(
+                              userName: value.user!.displayName.toString())),
+                      (Route<dynamic> route) => false,
+                    );
+                  }
+                });
               },
               child: Image.asset(
                 'assets/images/apple.png',

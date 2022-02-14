@@ -2,7 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:twitter_login/twitter_login.dart';
 
-Future<UserCredential> signInWithTwitter() async {
+Future<dynamic> signInWithTwitter() async {
+  UserCredential? user;
   // Create a TwitterLogin instance
   final twitterLogin = TwitterLogin(
       apiKey: dotenv.env['TWITTER_API_KEY']!,
@@ -12,13 +13,14 @@ Future<UserCredential> signInWithTwitter() async {
   // Trigger the sign-in flow
   final authResult = await twitterLogin.login();
 
-  // Create a credential from the access token
-  final twitterAuthCredential = TwitterAuthProvider.credential(
-    accessToken: authResult.authToken!,
-    secret: authResult.authTokenSecret!,
-  );
-
+  if (authResult.authToken != null && authResult.authTokenSecret != null) {
+    final twitterAuthCredential = TwitterAuthProvider.credential(
+      accessToken: authResult.authToken!,
+      secret: authResult.authTokenSecret!,
+    );
+    return await FirebaseAuth.instance
+        .signInWithCredential(twitterAuthCredential);
+  }
   // Once signed in, return the UserCredential
-  return await FirebaseAuth.instance
-      .signInWithCredential(twitterAuthCredential);
+  return user;
 }
