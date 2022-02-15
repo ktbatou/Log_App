@@ -15,9 +15,9 @@ Future<dynamic> signInWithGoogle() async {
       accessToken: googleAuth?.accessToken,
       idToken: googleAuth?.idToken,
     );
-    return await FirebaseAuth.instance.signInWithCredential(credential);
+    final userr = await FirebaseAuth.instance.signInWithCredential(credential);
+    return userr.user!.displayName;
   }
-
-  // Once signed in, return the UserCredential
   return user;
+  // Once signed in, return the UserCredential
 }

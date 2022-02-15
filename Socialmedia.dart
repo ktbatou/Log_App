@@ -43,7 +43,7 @@ class _SocialMediaState extends State<SocialMedia> {
                       context,
                       MaterialPageRoute(
                           builder: (context) =>
-                              Home(userName: value.displayName.toString())),
+                              Home(userName: value.toString())),
                       (Route<dynamic> route) => false,
                     );
                   }

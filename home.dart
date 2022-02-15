@@ -21,9 +21,41 @@ class _HomeState extends State<Home> {
       body: Center(
           child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-            Text("Welcome ${widget.userName}"),
+                Container(
+                  padding: EdgeInsets.only(right: contextWidth * 0.45),
+                  child: Text(
+                    "Hello,",
+                    style: GoogleFonts.poppins(
+                        fontSize: 48,
+                        color: const Color(0xff6D678E),
+                        fontWeight: FontWeight.w300),
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.only(left: contextWidth * 0.35),
+                  child: Text(
+                    widget.userName,
+                    style: GoogleFonts.poppins(
+                        fontSize: 20,
+                        color: const Color(0xff6D678E),
+                        fontWeight: FontWeight.w300),
+                  ),
+                ),
+              ],
+            ),
+            Container(
+              width: contextWidth * 0.7,
+              child: Text(
+                "“Inspiration comes from within yourself. One has to be positive. When you’re positive, good things happen.” —Deep Roy",
+                style: GoogleFonts.poppins(fontSize: 24, color: Colors.grey),
+              ),
+            ),
             Container(
                 width: contextWidth > contextheight
                     ? contextWidth * 0.35
