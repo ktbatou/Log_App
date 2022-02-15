@@ -2,6 +2,7 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:login_app/email_auth.dart';
+import 'package:login_app/registerUserName.dart';
 
 class RegisterForm extends StatefulWidget {
   @override
@@ -205,10 +206,10 @@ class _formState extends State<RegisterForm> {
                     ]),
                 child: ElevatedButton(
                   style: ButtonStyle(
-                      shadowColor:
-                          MaterialStateProperty.all<Color>(Color(0xff6D678E)),
+                      shadowColor: MaterialStateProperty.all<Color>(
+                          const Color(0xff6D678E)),
                       backgroundColor: MaterialStateProperty.all<Color>(
-                        Color(0xff6D678E),
+                        const Color(0xff6D678E),
                       ),
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
@@ -219,8 +220,10 @@ class _formState extends State<RegisterForm> {
                           color: Colors.white, fontSize: 18)),
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
-                      Registeration(email.text, pwd.text).then((String value) {
-                        if (value == "done") {
+                      Registeration(email.text, pwd.text,
+                              "${firstName.text} ${lastName.text}")
+                          .then((value) {
+                        if (value != "done") {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
                                 backgroundColor: Colors.lightGreen,

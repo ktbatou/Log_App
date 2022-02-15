@@ -164,7 +164,9 @@ class _LoginFormState extends State<LoginForm> {
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       LoginAuth(email.text, pwd.text).then((String value) {
-                        if (value == "done") {
+                        if (value != "No user found for that email." &&
+                            value !=
+                                "The account already exists for this email.") {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
                                 backgroundColor: Colors.lightGreen,
@@ -174,7 +176,7 @@ class _LoginFormState extends State<LoginForm> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => Home(
-                                      userName: "test",
+                                      userName: value,
                                     )),
                             (Route<dynamic> route) => false,
                           );
